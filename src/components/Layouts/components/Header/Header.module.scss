@@ -1,0 +1,128 @@
+.header {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    --search-border-radius: 92px;
+    --search-height: 46px;
+    --search-top-spacer: 9px;
+    --search-bottom-width: 52px;
+    --color-header: #009970;
+}
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.467);
+    height: 80px;
+    margin: 20px;
+    border-radius: 16px;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Thêm hiệu ứng mượt mà khi thay đổi nền và box-shadow */
+}
+.navbar-brand {
+    font-weight: 500;
+    color: var(--color-header);
+    font-size: 30px;
+    transition: 0.3s color;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
+        sans-serif;
+}
+
+.navbar-toggler {
+    border: none;
+    font-size: 1.25rem;
+    &:focus .btn-close:focus {
+        box-shadow: none;
+        outline: none;
+    }
+}
+
+.nav-link {
+    color: #666777;
+    font-weight: 500;
+    font-size: 20px;
+    position: relative;
+    &:hover {
+        color: var(--color-header);
+    }
+}
+
+@media (min-width: 991px) {
+    .nav-link::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: var(--color-header);
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::before,
+    .nav-link.active::before {
+        width: 100%;
+        visibility: visible;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+.search {
+    position: relative;
+    width: 361px;
+    height: var(--search-height);
+    background-color: #1618230f !important;
+    border-radius: var(--search-border-radius);
+    padding-left: 16px;
+    display: flex;
+    border: 1.5px solid transparent;
+
+    input {
+        flex: 1;
+        height: 100%;
+        font-size: 1rem;
+        color: var(--black);
+        background-color: transparent;
+        caret-color: var(--primary);
+
+        &:hover ~ .search-btn {
+            background-color: rgba(22, 24, 35, 0.03);
+        }
+    }
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: rgba(22, 24, 35, 0.75);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: var(--search-top-spacer);
+        right: var(--search-bottom-width);
+        width: 1px;
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+        background-color: rgba(22, 24, 35, 0.12);
+    }
+
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+}
+.search-btn {
+    background: none;
+    width: var(--search-bottom-width);
+    height: 100%;
+    border: none;
+    outline: none;
+    border-top-right-radius: var(--search-border-radius);
+    border-bottom-right-radius: var(--search-border-radius);
+    color: rgba(22, 24, 35, 0.34);
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+    &:active {
+        background-color: rgba(22, 24, 35, 0.06);
+    }
+}
